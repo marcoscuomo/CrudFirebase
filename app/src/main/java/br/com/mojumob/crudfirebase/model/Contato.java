@@ -63,8 +63,8 @@ public class Contato {
 
     public void atualizar(String idContatoSelecionado) {
 
-        DatabaseReference databse = Firebase.getFirebaseDatabse();
-        databse.child("contatos")
+        DatabaseReference database = Firebase.getFirebaseDatabse();
+        database.child("contatos")
                 .child(Firebase.getIdentificadorUsuario())
                 .child(idContatoSelecionado)
                 .setValue(this);

@@ -155,6 +155,7 @@ public class HomeActivity extends AppCompatActivity {
                         final EditText edtEmail          = mView.findViewById(R.id.dialog_edtEmail);
                         final EditText edtTelefone       = mView.findViewById(R.id.dialog_edtTelefone);
                         Button btnCadastrarContato = mView.findViewById(R.id.dialog_btnCadastrar);
+                        btnCadastrarContato.setText("Atualizar");
 
                         //Carregando os valores ja cadastrados
                         edtNome.setText(contatoSelecionado.getNome());
@@ -181,14 +182,11 @@ public class HomeActivity extends AppCompatActivity {
                                             contato.setTelfone(edtTelefone.getText().toString());
                                         }
 
+                                        contato.setIdContato(contatoSelecionado.getIdContato());
                                         contato.atualizar(contatoSelecionado.getIdContato());
                                         adapter.notifyDataSetChanged();
                                         dialog.hide();
 
-                                        //Limpando as caixas de texto para um novo cadastro
-                                        edtNome.setText("");
-                                        edtEmail.setText("");
-                                        edtTelefone.setText("");
 
                                     }else{
                                         Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
@@ -225,6 +223,7 @@ public class HomeActivity extends AppCompatActivity {
 
                         dialog.create();
                         dialog.show();
+                        adapter.notifyItemRemoved(position);
 
                     }
 
