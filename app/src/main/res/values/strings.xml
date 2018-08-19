@@ -23,4 +23,6 @@
     <string name="ok_clicado">OK clicado</string>
     <string name="preencha_o_campo_nome">Preencha o campo nome</string>
     <string name="pelo_menos_um_dado_cadastral">Para criar um contato, você deve cadastrar um e-mail ou telefone</string>
+    <string name="criar_nova_senha">Criar uma nova senha</string>
+    <string name="enviar">Enviar</string>
 </resources>

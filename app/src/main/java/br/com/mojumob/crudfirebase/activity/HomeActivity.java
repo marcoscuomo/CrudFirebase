@@ -65,6 +65,8 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
 
+        //Listner do searchView
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

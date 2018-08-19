@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/cadastro_edtSenha"
+        android:id="@+id/senha_edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cadastro_edtLogin" />
 
     <Button
-        android:id="@+id/btnCadastrar"
+        android:id="@+id/senha_btnEnviar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -77,10 +77,10 @@
         android:text="@string/login"
         android:textColor="@android:color/white"
         android:background="@drawable/style_button"
-        app:layout_constraintEnd_toEndOf="@+id/cadastro_edtSenha"
+        app:layout_constraintEnd_toEndOf="@+id/senha_edtEmail"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/cadastro_edtSenha"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_edtSenha" />
+        app:layout_constraintStart_toStartOf="@+id/senha_edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/senha_edtEmail" />
 
     <TextView
         android:id="@+id/txtEsqueceuSenha"
@@ -93,8 +93,8 @@
         android:layout_marginTop="16dp"
         android:text="@string/esqueceu_senha"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/btnCadastrar"
-        app:layout_constraintStart_toStartOf="@+id/btnCadastrar"
+        app:layout_constraintEnd_toEndOf="@+id/senha_btnEnviar"
+        app:layout_constraintStart_toStartOf="@+id/senha_btnEnviar"
         app:layout_constraintTop_toBottomOf="@+id/txtCriarConta" />
 
     <TextView
@@ -108,8 +108,8 @@
         android:layout_marginTop="32dp"
         android:text="@string/criar_conta"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/btnCadastrar"
-        app:layout_constraintStart_toStartOf="@+id/btnCadastrar"
-        app:layout_constraintTop_toBottomOf="@+id/btnCadastrar" />
+        app:layout_constraintEnd_toEndOf="@+id/senha_btnEnviar"
+        app:layout_constraintStart_toStartOf="@+id/senha_btnEnviar"
+        app:layout_constraintTop_toBottomOf="@+id/senha_btnEnviar" />
 
 </android.support.constraint.ConstraintLayout>

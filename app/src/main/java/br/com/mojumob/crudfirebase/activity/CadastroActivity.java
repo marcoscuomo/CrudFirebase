@@ -38,8 +38,8 @@ public class CadastroActivity extends AppCompatActivity {
         //Inicializações
         edtNome      = findViewById(R.id.cadastro_edtNome);
         edtEmail     = findViewById(R.id.cadastro_edtLogin);
-        edtSenha     = findViewById(R.id.cadastro_edtSenha);
-        btnCadastrar = findViewById(R.id.btnCadastrar);
+        edtSenha     = findViewById(R.id.senha_edtEmail);
+        btnCadastrar = findViewById(R.id.senha_btnEnviar);
 
         //Evento click Botao cadastrar
         btnCadastrar.setOnClickListener(new View.OnClickListener() {

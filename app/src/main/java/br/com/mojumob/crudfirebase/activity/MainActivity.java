@@ -39,10 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         //Inicializações
         edtLogin         = findViewById(R.id.cadastro_edtLogin);
-        edtSenha         = findViewById(R.id.cadastro_edtSenha);
-        btnLogin         = findViewById(R.id.btnCadastrar);
+        edtSenha         = findViewById(R.id.senha_edtEmail);
+        btnLogin         = findViewById(R.id.senha_btnEnviar);
         txtCriarConta    = findViewById(R.id.txtCriarConta);
         txtEsqueceuSenha = findViewById(R.id.txtEsqueceuSenha);
+
+        //Ação no clique para criar nova senha
+        txtEsqueceuSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, EsqueceuSenhaActivity.class));
+            }
+        });
 
         //Ação de clique no botao login
         btnLogin.setOnClickListener(new View.OnClickListener() {
