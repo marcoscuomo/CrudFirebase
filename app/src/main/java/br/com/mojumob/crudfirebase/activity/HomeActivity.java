@@ -59,9 +59,7 @@ public class HomeActivity extends AppCompatActivity {
                 btnCadastrarContato.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(!edtNome.getText().toString().isEmpty()){
-                            Toast.makeText(HomeActivity.this, R.string.ok_clicado, Toast.LENGTH_SHORT).show();
-                        }
+
                     }
                 });
 
