@@ -89,8 +89,7 @@ public class CadastroActivity extends AppCompatActivity {
                             String idUsario = Base64Custom.codificarNaBase64(usuario.getEmail());
                             usuario.setIdUsuario(idUsario);
                             usuario.salvar();
-
-                            Toast.makeText(CadastroActivity.this, "Cadastro criado com sucesso", Toast.LENGTH_SHORT).show();
+                            finish();
 
                         }else{
                             //Tratamento de excesao ao criar uma conta
