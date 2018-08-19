@@ -93,26 +93,23 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Sucesso ao criar a conta", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Sucesso ao se logar", Toast.LENGTH_SHORT).show();
                         }else{
+                            //Tratamento de excessoes ao se logar
+                            String excessao = "";
+                            try{
+                                throw task.getException();
+                            }catch(FirebaseAuthInvalidUserException e){
+                                excessao = "Usuario não cadastrado";
+                            }catch (FirebaseAuthInvalidCredentialsException e){
+                                excessao = "E-mail e Senha não correspondem";
+                            }
+                            catch (Exception e) {
+                                e.printStackTrace();
+                            }
 
+                            Toast.makeText(MainActivity.this, excessao, Toast.LENGTH_SHORT).show();
                         }
-
-                        //Tratamento de excessoes ao se logar
-                        String excessao = "";
-                        try{
-                            throw task.getException();
-                        }catch(FirebaseAuthInvalidUserException e){
-                            excessao = "Usuario não cadastrado";
-                        }catch (FirebaseAuthInvalidCredentialsException e){
-                            excessao = "E-mail e Senha não correspondem";
-                        }
-                        catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        Toast.makeText(MainActivity.this, excessao, Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

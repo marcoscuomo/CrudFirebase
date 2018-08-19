@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
-            case R.menu.menu_sair:
+            case R.id.menu_sair:
                 autenticacao = Firebase.getFirebaseAutenticacao();
                 autenticacao.signOut();
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
