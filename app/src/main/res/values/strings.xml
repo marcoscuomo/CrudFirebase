@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Crud Firebase</string>
     <string name="logo">Logo</string>
-    <string name="login">Login</string>
     <string name="senh">Senha</string>
     <string name="password">Senha</string>
     <string name="login">Login</string>
+    <string name="criar_conta">Não tem cadastro? Crie uma conta grátis.</string>
+    <string name="esqueceu_senha">Esqueceu a senha?</string>
 </resources>
