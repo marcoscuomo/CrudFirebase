@@ -39,6 +39,16 @@ public class CadastroActivity extends AppCompatActivity {
 
                 //Verificando se ha campos em branco
                 if(!nome.isEmpty()){
+                    if(!email.isEmpty()){
+                        if(!senha.isEmpty()){
+
+                        }else{
+                            exibiMensagemCampoVazio("Senha");
+                        }
+
+                    }else{
+                        exibiMensagemCampoVazio("E-mail");
+                    }
 
                 }else{
                     exibiMensagemCampoVazio("Nome");
