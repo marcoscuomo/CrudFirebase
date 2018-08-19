@@ -1,5 +1,6 @@
 package br.com.mojumob.crudfirebase.activity;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +9,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 import br.com.mojumob.crudfirebase.R;
+import br.com.mojumob.crudfirebase.firebase.Firebase;
+import br.com.mojumob.crudfirebase.model.Common;
+import br.com.mojumob.crudfirebase.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,13 +53,59 @@ public class MainActivity extends AppCompatActivity {
                 String senha = edtSenha.getText().toString();
 
                 if(!email.isEmpty()){
+                    if(!senha.isEmpty()){
 
+                        Usuario usuario = new Usuario();
+                        usuario.setEmail(email);
+                        usuario.setSenha(senha);
+
+                        validarSenha(usuario);
+
+                    }else{
+                        Toast.makeText(MainActivity.this, Common.SENHA_VAZIO,
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }else{
-                    Toast.makeText(MainActivity.this, "Digite seu login", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, Common.EMAIL_VAZIO,
+                            Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+
+    }
+
+    private void validarSenha(Usuario usuario) {
+
+        autenticacao = Firebase.getFirebaseAutenticacao();
+        autenticacao.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+                            Toast.makeText(MainActivity.this, "Sucesso ao criar a conta", Toast.LENGTH_SHORT).show();
+                        }else{
+
+                        }
+
+                        //Tratamento de excessoes ao se logar
+                        String excessao = "";
+                        try{
+                            throw task.getException();
+                        }catch(FirebaseAuthInvalidUserException e){
+                            excessao = "Usuario não cadastrado";
+                        }catch (FirebaseAuthInvalidCredentialsException e){
+                            excessao = "E-mail e Senha não correspondem";
+                        }
+                        catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        Toast.makeText(MainActivity.this, excessao, Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
     }
 }
