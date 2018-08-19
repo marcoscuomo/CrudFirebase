@@ -19,6 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import java.util.ArrayList;
@@ -39,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
     private RecyclerView recyclerContatos;
     private List<Contato>listaContatos = new ArrayList<>();
     private AdapterContato adapter;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
 
-        //Criando conteudo teste
+        /*/Criando conteudo teste
         Contato contatoTeste = new Contato("Marcos", "bytecore@uol.com", "11988766676");
         listaContatos.add(contatoTeste);
 
@@ -66,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         Contato contatoTeste3 = new Contato();
         contatoTeste3.setNome("Maria");
         contatoTeste3.setTelfone("11987889987");
-        listaContatos.add(contatoTeste3);
+        listaContatos.add(contatoTeste3);*/
 
 
 
@@ -138,7 +143,7 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
         recyclerContatos.setLayoutManager(layoutManager);
         recyclerContatos.setHasFixedSize(true);
-        //recyclerContatos.setAdapter(adapter);
+        recyclerContatos.setAdapter(adapter);
     }
 
     @Override
@@ -168,5 +173,35 @@ public class HomeActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void recuperaContatos(){
+
+        String idUsuario = Firebase.getIdentificadorUsuario();
+        databaseReference = Firebase.getFirebaseDatabse().child("contatos").child(idUsuario);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dados : dataSnapshot.getChildren()){
+                    Contato contato = dados.getValue(Contato.class);
+                    listaContatos.add(contato);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperaContatos();
     }
 }
