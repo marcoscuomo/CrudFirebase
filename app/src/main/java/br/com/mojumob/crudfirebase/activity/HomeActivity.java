@@ -21,9 +21,12 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import br.com.mojumob.crudfirebase.R;
+import br.com.mojumob.crudfirebase.adapter.AdapterContato;
 import br.com.mojumob.crudfirebase.firebase.Firebase;
 import br.com.mojumob.crudfirebase.model.Contato;
 
@@ -34,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private MaterialSearchView searchView;
     private RecyclerView recyclerContatos;
+    private List<Contato>listaContatos = new ArrayList<>();
+    private AdapterContato adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,21 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
+
+        //Criando conteudo teste
+        Contato contatoTeste = new Contato("Marcos", "bytecore@uol.com", "11988766676");
+        listaContatos.add(contatoTeste);
+
+        Contato contatoTeste2 = new Contato();
+        contatoTeste2.setNome("Jose");
+        contatoTeste2.setEmail("ze@ig.com");
+        listaContatos.add(contatoTeste2);
+
+        Contato contatoTeste3 = new Contato();
+        contatoTeste3.setNome("Maria");
+        contatoTeste3.setTelfone("11987889987");
+        listaContatos.add(contatoTeste3);
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
 
         /*Configurando RecyclerView*/
         //Adapter
-
+        adapter = new AdapterContato(HomeActivity.this, listaContatos);
 
         //Configurações gerais
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
