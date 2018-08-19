@@ -16,4 +16,9 @@
     <string name="edt_hint_nome">Nome</string>
     <string name="btn_cadastrar">Cadastrar</string>
     <string name="hint_email">E-mail</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="dialog_nome">Nome</string>
+    <string name="telefone">Telefone</string>
+    <string name="e_mail">E-mail</string>
+    <string name="ok_clicado">OK clicado</string>
 </resources>
