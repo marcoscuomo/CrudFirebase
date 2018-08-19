@@ -1,5 +1,6 @@
 package br.com.mojumob.crudfirebase.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });//Fim do botao Logar
+
+        //Criar conta
+        txtCriarConta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, CadastroActivity.class));
             }
         });
 
