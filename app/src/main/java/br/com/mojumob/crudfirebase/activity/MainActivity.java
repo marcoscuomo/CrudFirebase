@@ -117,4 +117,21 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void abrirHome(){
+        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+    }
+
+    private void verificaUsuarioLogado(){
+        autenticacao = Firebase.getFirebaseAutenticacao();
+        if(autenticacao.getCurrentUser() != null){
+            abrirHome();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        verificaUsuarioLogado();
+    }
 }
