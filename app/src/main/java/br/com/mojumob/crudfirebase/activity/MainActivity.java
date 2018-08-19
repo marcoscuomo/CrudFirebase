@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -37,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Guardando login e senha para verificacao
+                String email = edtLogin.getText().toString();
+                String senha = edtSenha.getText().toString();
+
+                if(!email.isEmpty()){
+
+                }else{
+                    Toast.makeText(MainActivity.this, "Digite seu login", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
