@@ -25,7 +25,7 @@
         app:srcCompat="@drawable/vector_craft_birds_logo" />
 
     <EditText
-        android:id="@+id/edtLogin"
+        android:id="@+id/cadastro_edtLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -43,10 +43,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtNome" />
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_edtNome" />
 
     <EditText
-        android:id="@+id/edtNome"
+        android:id="@+id/cadastro_edtNome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -56,7 +56,7 @@
         android:layout_marginTop="44dp"
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
-        android:hint="@string/login"
+        android:hint="@string/edt_hint_nome"
         android:inputType="textPersonName"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/edtSenha"
+        android:id="@+id/cadastro_edtSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -82,12 +82,12 @@
         android:textColorHint="@android:color/white"
         android:theme="@style/MyEditTextTheme"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/edtLogin"
-        app:layout_constraintStart_toStartOf="@+id/edtLogin"
-        app:layout_constraintTop_toBottomOf="@+id/edtLogin" />
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_edtLogin"
+        app:layout_constraintStart_toStartOf="@+id/cadastro_edtLogin"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_edtLogin" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnCadastrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -95,12 +95,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
-        android:text="@string/login"
-        android:textColor="@android:color/white"
         android:background="@drawable/style_button"
-        app:layout_constraintEnd_toEndOf="@+id/edtSenha"
+        android:text="@string/btn_cadastrar"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/cadastro_edtSenha"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/edtSenha"
-        app:layout_constraintTop_toBottomOf="@+id/edtSenha" />
+        app:layout_constraintStart_toStartOf="@+id/cadastro_edtSenha"
+        app:layout_constraintTop_toBottomOf="@+id/cadastro_edtSenha" />
 
 </android.support.constraint.ConstraintLayout>

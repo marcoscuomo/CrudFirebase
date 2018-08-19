@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Inicializações
-        edtLogin         = findViewById(R.id.edtLogin);
-        edtSenha         = findViewById(R.id.edtSenha);
-        btnLogin         = findViewById(R.id.btnLogin);
+        edtLogin         = findViewById(R.id.cadastro_edtLogin);
+        edtSenha         = findViewById(R.id.cadastro_edtSenha);
+        btnLogin         = findViewById(R.id.btnCadastrar);
         txtCriarConta    = findViewById(R.id.txtCriarConta);
         txtEsqueceuSenha = findViewById(R.id.txtEsqueceuSenha);
 
