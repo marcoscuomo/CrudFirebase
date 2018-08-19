@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import br.com.mojumob.crudfirebase.R;
 
@@ -40,10 +41,15 @@ public class CadastroActivity extends AppCompatActivity {
                 if(!nome.isEmpty()){
 
                 }else{
-
+                    exibiMensagemCampoVazio("Nome");
                 }
 
             }
         });//Fim do evento click botao cadadastrar
+    }
+
+    private void exibiMensagemCampoVazio(String campo) {
+        Toast.makeText(this, "Por favor, preencha o campo " + campo +
+                " para concluir o cadastro", Toast.LENGTH_LONG).show();
     }
 }
