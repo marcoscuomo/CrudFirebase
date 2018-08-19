@@ -1,5 +1,9 @@
 package br.com.mojumob.crudfirebase.model;
 
+import com.google.firebase.database.DatabaseReference;
+
+import br.com.mojumob.crudfirebase.firebase.Firebase;
+
 public class Contato {
 
     String nome, email, telfone, idContato;
@@ -43,5 +47,15 @@ public class Contato {
 
     public void setIdContato(String idContato) {
         this.idContato = idContato;
+    }
+
+    public void salvar() {
+
+        DatabaseReference database = Firebase.getFirebaseDatabse();
+        database.child("contatos")
+                .child(Firebase.getIdentificadorUsuario())
+                .child(this.idContato)
+                .setValue(this);
+
     }
 }

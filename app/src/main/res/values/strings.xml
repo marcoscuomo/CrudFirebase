@@ -21,4 +21,6 @@
     <string name="telefone">Telefone</string>
     <string name="e_mail">E-mail</string>
     <string name="ok_clicado">OK clicado</string>
+    <string name="preencha_o_campo_nome">Preencha o campo nome</string>
+    <string name="pelo_menos_um_dado_cadastral">Para criar um contato, você deve cadastrar um e-mail ou telefone</string>
 </resources>

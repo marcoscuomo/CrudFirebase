@@ -4,6 +4,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import br.com.mojumob.crudfirebase.helper.Base64Custom;
+
 public class Firebase {
 
     public static FirebaseAuth autenticacao;
@@ -23,6 +25,15 @@ public class Firebase {
         }
 
         return autenticacao;
+    }
+
+    public static String getIdentificadorUsuario(){
+
+        FirebaseAuth usuario = getFirebaseAutenticacao();
+        String email = usuario.getCurrentUser().getEmail();
+        String identificadorUsuario = Base64Custom.codificarNaBase64(email);
+
+        return identificadorUsuario;
     }
 
 }

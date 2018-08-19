@@ -18,8 +18,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.UUID;
+
 import br.com.mojumob.crudfirebase.R;
 import br.com.mojumob.crudfirebase.firebase.Firebase;
+import br.com.mojumob.crudfirebase.model.Contato;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -51,14 +54,38 @@ public class HomeActivity extends AppCompatActivity {
 
                 //Iniciando os elementos do xml
                 final EditText edtNome           = mView.findViewById(R.id.dialog_edtNome);
-                EditText edtEmail          = mView.findViewById(R.id.dialog_edtEmail);
-                EditText edtTelefone       = mView.findViewById(R.id.dialog_edtTelefone);
+                final EditText edtEmail          = mView.findViewById(R.id.dialog_edtEmail);
+                final EditText edtTelefone       = mView.findViewById(R.id.dialog_edtTelefone);
                 Button btnCadastrarContato = mView.findViewById(R.id.dialog_btnCadastrar);
 
                 //Tratando a açao de clique
                 btnCadastrarContato.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        if(!edtNome.getText().toString().isEmpty()){
+                            if((!edtEmail.getText().toString().isEmpty()) ||
+                                    (!edtTelefone.getText().toString().isEmpty())){
+
+                                Contato contato = new Contato();
+                                contato.setNome(edtNome.getText().toString());
+                                if(!edtEmail.getText().toString().isEmpty()){
+                                    contato.setEmail(edtEmail.getText().toString());
+                                }else if(!edtTelefone.getText().toString().isEmpty()){
+                                    contato.setTelfone(edtTelefone.getText().toString());
+                                }
+                                String idContato = String.valueOf(UUID.randomUUID());
+                                contato.setIdContato(idContato);
+                                contato.salvar();
+
+                            }else{
+                                Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(HomeActivity.this, R.string.preencha_o_campo_nome
+                                    , Toast.LENGTH_SHORT).show();
+                        }
 
                     }
                 });
