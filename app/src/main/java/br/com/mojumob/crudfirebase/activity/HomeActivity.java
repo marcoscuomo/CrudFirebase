@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     //Atributos
     private FirebaseAuth autenticacao;
     private MaterialSearchView searchView;
+    private RecyclerView recyclerContatos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         //Inicializações
         Toolbar toolbar          = findViewById(R.id.toolbarMain);
         FloatingActionButton fab = findViewById(R.id.fab);
+        recyclerContatos         = findViewById(R.id.recyclerContatos);
         searchView               = findViewById(R.id.persquisarPrincipal);
 
         toolbar.setTitle("Lista de contatos");
@@ -80,8 +85,11 @@ public class HomeActivity extends AppCompatActivity {
                                 String idContato = String.valueOf(UUID.randomUUID());
                                 contato.setIdContato(idContato);
                                 contato.salvar();
-                                mBuilder.setPositiveButton("Sair", null);
 
+                                //Limpando as caixas de texto para um novo cadastro
+                                edtNome.setText("");
+                                edtEmail.setText("");
+                                edtTelefone.setText("");
 
                             }else{
                                 Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
@@ -94,13 +102,23 @@ public class HomeActivity extends AppCompatActivity {
 
                     }
                 });
-
+                mBuilder.setPositiveButton("Sair", null);
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
 
             }
         });
+
+        /*Configurando RecyclerView*/
+        //Adapter
+
+
+        //Configurações gerais
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(HomeActivity.this);
+        recyclerContatos.setLayoutManager(layoutManager);
+        recyclerContatos.setHasFixedSize(true);
+        //recyclerContatos.setAdapter(adapter);
     }
 
     @Override
