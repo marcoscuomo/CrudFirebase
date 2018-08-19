@@ -27,13 +27,12 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
 
         //Inicializações
         Toolbar toolbar          = findViewById(R.id.toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         //searchView               = findViewById(R.id.pesquisarPrincipal);
-
-        setContentView(R.layout.activity_home);
 
         toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
