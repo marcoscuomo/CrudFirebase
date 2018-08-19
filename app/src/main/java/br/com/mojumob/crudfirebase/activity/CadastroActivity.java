@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import br.com.mojumob.crudfirebase.R;
 import br.com.mojumob.crudfirebase.firebase.Firebase;
+import br.com.mojumob.crudfirebase.helper.Base64Custom;
 import br.com.mojumob.crudfirebase.model.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
@@ -75,7 +76,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     //Metodo para cadastrar o usuario após a checagem de que não há campo vazio
-    private void cadastrarUsuario(Usuario usuario) {
+    private void cadastrarUsuario(final Usuario usuario) {
 
         autenticacao = Firebase.getFirebaseAutenticacao();
         autenticacao.createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
@@ -84,6 +85,10 @@ public class CadastroActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+
+                            String idUsario = Base64Custom.codificarNaBase64(usuario.getEmail());
+                            usuario.setIdUsuario(idUsario);
+                            usuario.salvar();
 
                             Toast.makeText(CadastroActivity.this, "Cadastro criado com sucesso", Toast.LENGTH_SHORT).show();
 
@@ -100,7 +105,7 @@ public class CadastroActivity extends AppCompatActivity {
                                 excesao = "E-mail já cadastrado";
                             }
                             catch (Exception e) {
-                                excesao = "Erro ca cadastrar o usuário " + e.getMessage();
+                                excesao = "Erro ao cadastrar o usuário " + e.getMessage();
                                 e.printStackTrace();
                             }
 
