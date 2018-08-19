@@ -91,13 +91,8 @@ public class HomeActivity extends AppCompatActivity {
 
                                 Contato contato = new Contato();
                                 contato.setNome(edtNome.getText().toString());
-                                if(!edtEmail.getText().toString().isEmpty()){
-                                    contato.setEmail(edtEmail.getText().toString());
-                                }
-
-                                if(!edtTelefone.getText().toString().isEmpty()){
-                                    contato.setTelfone(edtTelefone.getText().toString());
-                                }
+                                contato.setEmail(edtEmail.getText().toString());
+                                contato.setTelfone(edtTelefone.getText().toString());
 
                                 String idContato = String.valueOf(UUID.randomUUID());
                                 contato.setIdContato(idContato);
@@ -174,19 +169,12 @@ public class HomeActivity extends AppCompatActivity {
 
                                         Contato contato = new Contato();
                                         contato.setNome(edtNome.getText().toString());
-                                        if(!edtEmail.getText().toString().isEmpty()){
-                                            contato.setEmail(edtEmail.getText().toString());
-                                        }
-
-                                        if(!edtTelefone.getText().toString().isEmpty()){
-                                            contato.setTelfone(edtTelefone.getText().toString());
-                                        }
-
+                                        contato.setEmail(edtEmail.getText().toString());
+                                        contato.setTelfone(edtTelefone.getText().toString());
                                         contato.setIdContato(contatoSelecionado.getIdContato());
                                         contato.atualizar(contatoSelecionado.getIdContato());
                                         adapter.notifyDataSetChanged();
                                         dialog.hide();
-
 
                                     }else{
                                         Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
@@ -200,7 +188,7 @@ public class HomeActivity extends AppCompatActivity {
                             }
                         });
                         dialog.show();
-                        mBuilder.setPositiveButton("Sair", null);
+
 
                     }
 

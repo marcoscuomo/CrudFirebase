@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:text="1198788878"
+            android:text=""
             app:layout_constraintStart_toStartOf="@+id/adapter_txtNome"
             app:layout_constraintTop_toBottomOf="@+id/adapter_txtNome" />
 
@@ -48,7 +48,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="24dp"
-            android:text="byecore@gmail.com"
+            android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -59,7 +59,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:text="Marcos Souza"
+            android:text=""
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/adapter_imgContato"

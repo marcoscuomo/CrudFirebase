@@ -40,22 +40,19 @@ public class AdapterContato extends RecyclerView.Adapter<AdapterContato.MyViewHo
         String nome = contato.getNome();
         String email = contato.getEmail();
         String telefone = contato.getTelfone();
+        holder.txtNome.setText(nome);
+        holder.txtTelefone.setText(telefone);
+        holder.txtEmail.setText(email);
 
-        if(email != null && telefone != null){
+        if(!(email.equals("")) && !(telefone.equals(""))){
             holder.imgContato.setImageResource(R.drawable.ic_contato_cinza_24dp);
-            holder.txtTelefone.setText(telefone);
-            holder.txtEmail.setText(email);
-        }else if(email != null && telefone == null){
+        }else if(!(email.equals("")) && (telefone.equals(""))){
             holder.imgContato.setImageResource(R.drawable.ic_email_azul_24dp);
-            holder.txtEmail.setText(email);
-            holder.txtTelefone.setVisibility(View.GONE);
-        }else{
+        }else if((email.equals("")) && !(telefone.equals(""))){
             holder.imgContato.setImageResource(R.drawable.ic_telefone_rosa_24dp);
-            holder.txtTelefone.setText(telefone);
-            holder.txtEmail.setVisibility(View.GONE);
         }
 
-        holder.txtNome.setText(nome);
+
 
     }
 
