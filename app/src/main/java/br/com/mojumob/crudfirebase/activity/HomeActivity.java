@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -33,6 +34,7 @@ import java.util.UUID;
 import br.com.mojumob.crudfirebase.R;
 import br.com.mojumob.crudfirebase.adapter.AdapterContato;
 import br.com.mojumob.crudfirebase.firebase.Firebase;
+import br.com.mojumob.crudfirebase.helper.RecyclerItemClickListener;
 import br.com.mojumob.crudfirebase.model.Contato;
 
 
@@ -131,6 +133,95 @@ public class HomeActivity extends AppCompatActivity {
         recyclerContatos.setLayoutManager(layoutManager);
         recyclerContatos.setHasFixedSize(true);
         recyclerContatos.setAdapter(adapter);
+
+        //Clique no recyclerView
+        recyclerContatos.addOnItemTouchListener(new RecyclerItemClickListener(
+                HomeActivity.this, recyclerContatos,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                        final Contato contatoSelecionado = listaContatos.get(position);
+
+                        //Iniciando o Alterdialog
+                        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(HomeActivity.this);
+                        final View mView = getLayoutInflater().inflate(R.layout.dialog_cadastrar, null);
+
+                        mBuilder.setView(mView);
+                        final AlertDialog dialog = mBuilder.create();
+
+
+                        //Iniciando os elementos do xml
+                        final EditText edtNome           = mView.findViewById(R.id.dialog_edtNome);
+                        final EditText edtEmail          = mView.findViewById(R.id.dialog_edtEmail);
+                        final EditText edtTelefone       = mView.findViewById(R.id.dialog_edtTelefone);
+                        Button btnCadastrarContato = mView.findViewById(R.id.dialog_btnCadastrar);
+
+                        //Carregando os valores ja cadastrados
+                        edtNome.setText(contatoSelecionado.getNome());
+                        edtEmail.setText(contatoSelecionado.getEmail());
+                        edtTelefone.setText(contatoSelecionado.getTelfone());
+
+
+                        //Tratando a açao de clique
+                        btnCadastrarContato.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                if(!edtNome.getText().toString().isEmpty()){
+                                    if((!edtEmail.getText().toString().isEmpty()) ||
+                                            (!edtTelefone.getText().toString().isEmpty())){
+
+                                        Contato contato = new Contato();
+                                        contato.setNome(edtNome.getText().toString());
+                                        if(!edtEmail.getText().toString().isEmpty()){
+                                            contato.setEmail(edtEmail.getText().toString());
+                                        }
+
+                                        if(!edtTelefone.getText().toString().isEmpty()){
+                                            contato.setTelfone(edtTelefone.getText().toString());
+                                        }
+
+                                        contato.atualizar(contatoSelecionado.getIdContato());
+                                        adapter.notifyDataSetChanged();
+                                        dialog.hide();
+
+                                        //Limpando as caixas de texto para um novo cadastro
+                                        edtNome.setText("");
+                                        edtEmail.setText("");
+                                        edtTelefone.setText("");
+
+                                    }else{
+                                        Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }else{
+                                    Toast.makeText(HomeActivity.this, R.string.preencha_o_campo_nome
+                                            , Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+                        dialog.show();
+                        mBuilder.setPositiveButton("Sair", null);
+
+
+
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    }
+                }
+        ));
+
     }
 
     @Override
@@ -168,25 +259,8 @@ public class HomeActivity extends AppCompatActivity {
         String idUsuario = Firebase.getIdentificadorUsuario();
         databaseReference = Firebase.getFirebaseDatabse().child("contatos").child(idUsuario);
 
-        /*
-        * databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot dados : dataSnapshot.getChildren()){
-                    Contato contato = dados.getValue(Contato.class);
-                    listaContatos.add(contato);
-                }
-                adapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-
-
-        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+        valueEventListener = databaseReference.orderByChild("nome").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listaContatos.clear();

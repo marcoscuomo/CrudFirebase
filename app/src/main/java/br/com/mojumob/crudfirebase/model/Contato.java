@@ -42,7 +42,7 @@ public class Contato {
         this.telfone = telfone;
     }
 
-    @Exclude
+
     public String getIdContato() {
         return idContato;
     }
@@ -57,6 +57,16 @@ public class Contato {
         database.child("contatos")
                 .child(Firebase.getIdentificadorUsuario())
                 .child(this.idContato)
+                .setValue(this);
+
+    }
+
+    public void atualizar(String idContatoSelecionado) {
+
+        DatabaseReference databse = Firebase.getFirebaseDatabse();
+        databse.child("contatos")
+                .child(Firebase.getIdentificadorUsuario())
+                .child(idContatoSelecionado)
                 .setValue(this);
 
     }
