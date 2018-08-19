@@ -32,7 +32,16 @@ public class CadastroActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Iniciando as variaveis para teste
+                String nome = edtNome.getText().toString();
+                String email = edtEmail.getText().toString();
+                String senha = edtSenha.getText().toString();
 
+                //Verificando se ha campos em branco
+                if(!nome.isEmpty()){
+
+                }else{
+
+                }
 
             }
         });//Fim do evento click botao cadadastrar
