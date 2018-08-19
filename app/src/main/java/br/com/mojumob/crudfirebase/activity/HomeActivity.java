@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     private List<Contato>listaContatos = new ArrayList<>();
     private AdapterContato adapter;
     private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +60,6 @@ public class HomeActivity extends AppCompatActivity {
 
         toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
-
-        /*/Criando conteudo teste
-        Contato contatoTeste = new Contato("Marcos", "bytecore@uol.com", "11988766676");
-        listaContatos.add(contatoTeste);
-
-        Contato contatoTeste2 = new Contato();
-        contatoTeste2.setNome("Jose");
-        contatoTeste2.setEmail("ze@ig.com");
-        listaContatos.add(contatoTeste2);
-
-        Contato contatoTeste3 = new Contato();
-        contatoTeste3.setNome("Maria");
-        contatoTeste3.setTelfone("11987889987");
-        listaContatos.add(contatoTeste3);*/
-
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +96,7 @@ public class HomeActivity extends AppCompatActivity {
                                 String idContato = String.valueOf(UUID.randomUUID());
                                 contato.setIdContato(idContato);
                                 contato.salvar();
+                                adapter.notifyDataSetChanged();
 
                                 //Limpando as caixas de texto para um novo cadastro
                                 edtNome.setText("");
@@ -181,9 +168,28 @@ public class HomeActivity extends AppCompatActivity {
         String idUsuario = Firebase.getIdentificadorUsuario();
         databaseReference = Firebase.getFirebaseDatabse().child("contatos").child(idUsuario);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        /*
+        * databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dados : dataSnapshot.getChildren()){
+                    Contato contato = dados.getValue(Contato.class);
+                    listaContatos.add(contato);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+
+        valueEventListener = databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listaContatos.clear();
                 for(DataSnapshot dados : dataSnapshot.getChildren()){
                     Contato contato = dados.getValue(Contato.class);
                     listaContatos.add(contato);
@@ -203,5 +209,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         recuperaContatos();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        databaseReference.removeEventListener(valueEventListener);
     }
 }
