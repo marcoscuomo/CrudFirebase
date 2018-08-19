@@ -1,5 +1,7 @@
 package br.com.mojumob.crudfirebase.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -69,6 +71,8 @@ public class HomeActivity extends AppCompatActivity {
                 //Iniciando o Alterdialog
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(HomeActivity.this);
                 final View mView = getLayoutInflater().inflate(R.layout.dialog_cadastrar, null);
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
 
                 //Iniciando os elementos do xml
                 final EditText edtNome           = mView.findViewById(R.id.dialog_edtNome);
@@ -99,11 +103,8 @@ public class HomeActivity extends AppCompatActivity {
                                 contato.setIdContato(idContato);
                                 contato.salvar();
                                 adapter.notifyDataSetChanged();
+                                dialog.hide();
 
-                                //Limpando as caixas de texto para um novo cadastro
-                                edtNome.setText("");
-                                edtEmail.setText("");
-                                edtTelefone.setText("");
 
                             }else{
                                 Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,
@@ -116,9 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     }
                 });
-                mBuilder.setPositiveButton("Sair", null);
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
+
                 dialog.show();
 
             }
@@ -205,13 +204,27 @@ public class HomeActivity extends AppCompatActivity {
                         dialog.show();
                         mBuilder.setPositiveButton("Sair", null);
 
-
-
-
                     }
 
                     @Override
-                    public void onLongItemClick(View view, int position) {
+                    public void onLongItemClick(View view, final int position) {
+
+                        final Contato contatoSelecionado = listaContatos.get(position);
+
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(HomeActivity.this);
+
+                        dialog.setTitle("Exclusão");
+                        dialog.setMessage("Confirma a exclusão do contato? ");
+                        dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                contatoSelecionado.deletar(contatoSelecionado.getIdContato());
+                            }
+                        });
+                        dialog.setNegativeButton("Não", null);
+
+                        dialog.create();
+                        dialog.show();
 
                     }
 

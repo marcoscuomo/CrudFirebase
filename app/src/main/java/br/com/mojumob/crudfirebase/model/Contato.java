@@ -70,4 +70,14 @@ public class Contato {
                 .setValue(this);
 
     }
+
+    public void deletar(String idContatoSelecionado) {
+
+        DatabaseReference database = Firebase.getFirebaseDatabse();
+        database.child("contatos")
+                .child(Firebase.getIdentificadorUsuario())
+                .child(idContatoSelecionado)
+                .removeValue();
+
+    }
 }
