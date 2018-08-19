@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "Sucesso ao se logar", Toast.LENGTH_SHORT).show();
+                            abrirHome();
                         }else{
                             //Tratamento de excessoes ao se logar
                             String excessao = "";
@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void abrirHome(){
         startActivity(new Intent(MainActivity.this, HomeActivity.class));
+        finish();
     }
 
     private void verificaUsuarioLogado(){
