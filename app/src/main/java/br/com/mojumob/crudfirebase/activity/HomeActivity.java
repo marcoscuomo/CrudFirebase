@@ -7,10 +7,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import br.com.mojumob.crudfirebase.R;
 import br.com.mojumob.crudfirebase.firebase.Firebase;
@@ -20,15 +22,23 @@ public class HomeActivity extends AppCompatActivity {
 
     //Atributos
     private FirebaseAuth autenticacao;
+    private MaterialSearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Inicializações
+        Toolbar toolbar          = findViewById(R.id.toolbar);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        //searchView               = findViewById(R.id.pesquisarPrincipal);
+
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        toolbar.setTitle("Lista de contatos");
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +50,14 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_sair, menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+
+        //Configurando o botaoo de pesquisa
+        MenuItem item = menu.findItem(R.id.menu_pesquisar);
+        searchView.setMenuItem(item);
+
         return super.onCreateOptionsMenu(menu);
     }
 
