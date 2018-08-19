@@ -49,8 +49,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Iniciando o Alterdialog
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(HomeActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.dialog_cadastrar, null);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(HomeActivity.this);
+                final View mView = getLayoutInflater().inflate(R.layout.dialog_cadastrar, null);
 
                 //Iniciando os elementos do xml
                 final EditText edtNome           = mView.findViewById(R.id.dialog_edtNome);
@@ -71,12 +71,17 @@ public class HomeActivity extends AppCompatActivity {
                                 contato.setNome(edtNome.getText().toString());
                                 if(!edtEmail.getText().toString().isEmpty()){
                                     contato.setEmail(edtEmail.getText().toString());
-                                }else if(!edtTelefone.getText().toString().isEmpty()){
+                                }
+
+                                if(!edtTelefone.getText().toString().isEmpty()){
                                     contato.setTelfone(edtTelefone.getText().toString());
                                 }
+
                                 String idContato = String.valueOf(UUID.randomUUID());
                                 contato.setIdContato(idContato);
                                 contato.salvar();
+                                mBuilder.setPositiveButton("Sair", null);
+
 
                             }else{
                                 Toast.makeText(HomeActivity.this, R.string.pelo_menos_um_dado_cadastral,

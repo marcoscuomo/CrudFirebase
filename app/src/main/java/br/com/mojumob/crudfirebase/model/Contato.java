@@ -1,6 +1,7 @@
 package br.com.mojumob.crudfirebase.model;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 
 import br.com.mojumob.crudfirebase.firebase.Firebase;
 
@@ -41,6 +42,7 @@ public class Contato {
         this.telfone = telfone;
     }
 
+    @Exclude
     public String getIdContato() {
         return idContato;
     }
