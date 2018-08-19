@@ -66,6 +66,40 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Listner do searchView
+        searchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                AdapterContato adapterContato = new AdapterContato(HomeActivity.this, listaContatos);
+                recyclerContatos.setAdapter(adapterContato);
+                adapter.notifyDataSetChanged();
+
+                //recuperaContatos();
+            }
+        });
+
+        //Listener para a caixa de texto do searchView
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                if(newText != null && !newText.isEmpty()){
+                    pesquisarConversa(newText.toLowerCase());
+                }
+
+                return true;
+            }
+        });
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,6 +257,28 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         ));
+
+    }
+
+    private void pesquisarConversa(String newText) {
+
+        List<Contato> listaContatoBusca = new ArrayList<>();
+
+        for(Contato contato : listaContatos){
+
+            String nome = contato.getNome().toLowerCase();
+            String email = contato.getEmail().toLowerCase();
+            String telefone = contato.getTelfone();
+
+            if(nome.contains(newText) || email.contains(newText) || telefone.contains(newText)){
+                listaContatoBusca.add(contato);
+            }
+
+            adapter = new AdapterContato(HomeActivity.this, listaContatoBusca);
+            recyclerContatos.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
+        }
 
     }
 
