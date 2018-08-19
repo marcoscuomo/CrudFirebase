@@ -24,5 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Inicializações
         edtLogin = findViewById(R.id.edtLogin);
+        edtSenha = findViewById(R.id.edtSenha);
     }
 }
