@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/cadastro_edtLogin"
+        android:id="@+id/inicial_edtLogin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cadastro_edtNome" />
 
     <EditText
-        android:id="@+id/senha_edtEmail"
+        android:id="@+id/inicial_edtEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -83,12 +83,12 @@
         android:textColorHint="@android:color/white"
         android:theme="@style/MyEditTextTheme"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/cadastro_edtLogin"
-        app:layout_constraintStart_toStartOf="@+id/cadastro_edtLogin"
-        app:layout_constraintTop_toBottomOf="@+id/cadastro_edtLogin" />
+        app:layout_constraintEnd_toEndOf="@+id/inicial_edtLogin"
+        app:layout_constraintStart_toStartOf="@+id/inicial_edtLogin"
+        app:layout_constraintTop_toBottomOf="@+id/inicial_edtLogin" />
 
     <Button
-        android:id="@+id/senha_btnEnviar"
+        android:id="@+id/inicial_btnEnviar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -99,9 +99,9 @@
         android:background="@drawable/style_button"
         android:text="@string/btn_cadastrar"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/senha_edtEmail"
+        app:layout_constraintEnd_toEndOf="@+id/inicial_edtEmail"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/senha_edtEmail"
-        app:layout_constraintTop_toBottomOf="@+id/senha_edtEmail" />
+        app:layout_constraintStart_toStartOf="@+id/inicial_edtEmail"
+        app:layout_constraintTop_toBottomOf="@+id/inicial_edtEmail" />
 
 </android.support.constraint.ConstraintLayout>

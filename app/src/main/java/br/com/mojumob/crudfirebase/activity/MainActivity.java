@@ -38,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Inicializações
-        edtLogin         = findViewById(R.id.cadastro_edtLogin);
-        edtSenha         = findViewById(R.id.senha_edtEmail);
-        btnLogin         = findViewById(R.id.senha_btnEnviar);
-        txtCriarConta    = findViewById(R.id.txtCriarConta);
-        txtEsqueceuSenha = findViewById(R.id.txtEsqueceuSenha);
+        edtLogin         = findViewById(R.id.inicial_edtLogin);
+        edtSenha         = findViewById(R.id.inicial_edtEmail);
+        btnLogin         = findViewById(R.id.inicial_btnEnviar);
+        txtCriarConta    = findViewById(R.id.inicial_txtCriarConta);
+        txtEsqueceuSenha = findViewById(R.id.inicial_txtEsqueceuSenha);
 
         //Ação no clique para criar nova senha
         txtEsqueceuSenha.setOnClickListener(new View.OnClickListener() {

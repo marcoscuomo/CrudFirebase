@@ -25,8 +25,8 @@ public class EsqueceuSenhaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_esqueceu_senha);
 
         //Inicializações
-        edtEmail  = findViewById(R.id.senha_edtEmail);
-        btnEnviar = findViewById(R.id.senha_btnEnviar);
+        edtEmail  = findViewById(R.id.inicial_edtEmail);
+        btnEnviar = findViewById(R.id.inicial_btnEnviar);
 
         //Firebase
         autenticacao = Firebase.getFirebaseAutenticacao();
