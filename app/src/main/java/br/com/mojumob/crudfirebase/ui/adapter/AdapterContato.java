@@ -1,4 +1,4 @@
-package br.com.mojumob.crudfirebase.adapter;
+package br.com.mojumob.crudfirebase.ui.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -3,7 +3,6 @@ package br.com.mojumob.crudfirebase.firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 import br.com.mojumob.crudfirebase.helper.Base64Custom;
 
 public class Firebase {
@@ -12,7 +11,6 @@ public class Firebase {
     public static DatabaseReference databaseReference;
 
     public static DatabaseReference getFirebaseDatabse(){
-
         if(databaseReference == null){
             databaseReference = FirebaseDatabase.getInstance().getReference();
         }
@@ -23,7 +21,6 @@ public class Firebase {
         if(autenticacao == null){
              autenticacao = FirebaseAuth.getInstance();
         }
-
         return autenticacao;
     }
 
