@@ -1,7 +1,6 @@
 package br.com.mojumob.crudfirebase.model;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 
 import br.com.mojumob.crudfirebase.firebase.Firebase;
 
