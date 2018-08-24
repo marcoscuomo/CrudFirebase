@@ -2,7 +2,6 @@ package br.com.mojumob.crudfirebase.model;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
-
 import br.com.mojumob.crudfirebase.firebase.Firebase;
 
 public class Usuario {
@@ -13,6 +12,7 @@ public class Usuario {
     private String idUsuario;
 
     public Usuario(String nome, String email, String senha) {
+
         this.nome = nome;
         this.email = email;
         this.senha = senha;
