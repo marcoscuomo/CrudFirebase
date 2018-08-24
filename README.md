@@ -4,7 +4,11 @@
 A aplicativo simula uma agenda de contatos onde o usuário poderá digitar o nome, telefone e e-mail do contato. </p>
 
 
-[![GitHub](https://github.com/marcoscuomo/CrudFirebase/blob/master/LICENSE)](https://github.com/marcoscuomo/PreencheEnderecoWS/blob/master/LICENSE)
+
+
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/marcoscuomo/CrudFirebase/blob/master/README.md)
+
+
 
 
 <b>Recursos utilizados:</b>
