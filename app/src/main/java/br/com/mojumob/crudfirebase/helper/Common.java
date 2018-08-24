@@ -1,4 +1,4 @@
-package br.com.mojumob.crudfirebase.model;
+package br.com.mojumob.crudfirebase.helper;
 
 public class Common {
 
