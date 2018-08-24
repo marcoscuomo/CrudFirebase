@@ -9,8 +9,7 @@
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     app:cardCornerRadius="7dp"
-    app:cardElevation="4dp"
-    >
+    app:cardElevation="4dp">
 
     <android.support.constraint.ConstraintLayout
 
